@@ -45,13 +45,22 @@
   .card .ic svg{width:22px;height:22px;stroke:currentColor;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
   .card h3{font-size:17px;margin-bottom:7px}
   .card p{color:var(--mut);font-size:14.5px}
-  .price{max-width:430px;margin:0 auto;background:var(--surface);border:1px solid var(--accent);border-radius:18px;padding:36px;text-align:center;box-shadow:0 0 60px rgba(91,140,255,.12)}
-  .price .tag{font-size:13px;text-transform:uppercase;letter-spacing:1px;color:var(--accent);font-weight:700}
-  .price .n{font-size:54px;font-weight:800;letter-spacing:-2px;margin:6px 0}
-  .price .n small{font-size:18px;color:var(--mut);font-weight:500}
-  .price ul{list-style:none;text-align:left;margin:24px 0;display:flex;flex-direction:column;gap:11px}
-  .price li{display:flex;gap:10px;font-size:14.5px;align-items:flex-start}
-  .price li:before{content:"";flex:none;width:18px;height:18px;margin-top:2px;background:no-repeat center/contain url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%2322c55e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>')}
+  .plans{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:880px;margin:0 auto;align-items:stretch}
+  @media(max-width:760px){.plans{grid-template-columns:1fr}}
+  .plan{background:var(--bg);border:1px solid var(--line);border-radius:16px;padding:32px 24px;text-align:center;position:relative;display:flex;flex-direction:column;transition:.15s}
+  .plan:hover{border-color:#3a4156;transform:translateY(-3px)}
+  .plan.pop{border-color:var(--accent);box-shadow:0 0 50px rgba(91,140,255,.14)}
+  .plan .pop-tag{position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:var(--accent);color:#fff;font-size:11px;font-weight:700;padding:4px 13px;border-radius:999px;text-transform:uppercase;letter-spacing:.5px}
+  .plan .pname{font-size:15px;font-weight:600;color:var(--mut)}
+  .plan .pmonth{font-size:42px;font-weight:800;letter-spacing:-1.5px;margin:10px 0 2px}
+  .plan .pmonth small{font-size:16px;color:var(--mut);font-weight:500}
+  .plan .ptotal{font-size:13.5px;color:var(--mut)}
+  .plan .psave{display:inline-block;margin-top:9px;font-size:12px;font-weight:700;color:var(--ok);background:rgba(34,197,94,.12);padding:3px 11px;border-radius:6px}
+  .plan .pbtn{margin-top:22px}
+  .plan:has(.psave) .pbtn,.plan .pbtn{margin-top:auto}
+  .plan .pmonth+.ptotal{margin-bottom:0}
+  .incluye{text-align:center;max-width:640px;margin:34px auto 0;font-size:14px;color:var(--mut)}
+  .incluye b{color:var(--tx);font-weight:500}
   .faq{max-width:720px;margin:0 auto}
   .qa{border-bottom:1px solid var(--line);padding:20px 0}
   .qa h4{font-size:16px;margin-bottom:6px}
@@ -102,21 +111,34 @@
 </div></section>
 
 <section id="price" style="background:var(--surface)"><div class="wrap">
-  <h2 class="t"><span data-es>Un pago, tuyo para siempre</span><span data-en>One payment, yours forever</span></h2>
-  <p class="sub"><span data-es>Licencia de por vida con actualizaciones incluidas.</span><span data-en>Lifetime license with updates included.</span></p>
-  <div class="price">
-    <div class="tag"><span data-es>Licencia completa</span><span data-en>Full license</span></div>
-    <div class="n">$<span id="precio">49</span> <small>USD</small></div>
-    <ul>
-      <li><span data-es>Mercado Libre + Amazon, multi-país</span><span data-en>Mercado Libre + Amazon, multi-country</span></li>
-      <li><span data-es>Telegram y WhatsApp</span><span data-en>Telegram and WhatsApp</span></li>
-      <li><span data-es>Panel visual en español e inglés</span><span data-en>Visual panel in Spanish & English</span></li>
-      <li><span data-es>Actualizaciones automáticas gratis</span><span data-en>Free automatic updates</span></li>
-      <li><span data-es>Guía paso a paso incluida</span><span data-en>Step-by-step guide included</span></li>
-    </ul>
-    <a class="btn gold" id="buy" href="#" style="width:100%;justify-content:center" target="_blank" rel="noopener">
-      <span data-es>Comprar y recibir mi licencia</span><span data-en>Buy and get my license</span></a>
-    <p style="font-size:12.5px;color:var(--mut);margin-top:14px"><span data-es>Pago seguro. Recibes tu clave de licencia por email al instante.</span><span data-en>Secure payment. You get your license key by email instantly.</span></p>
+  <h2 class="t"><span data-es>Elige tu plan</span><span data-en>Choose your plan</span></h2>
+  <p class="sub"><span data-es>Entre más meses, menos pagas por mes. Recibes tu licencia por email al instante.</span><span data-en>The more months, the less you pay per month. Get your license by email instantly.</span></p>
+  <div class="plans">
+    <div class="plan">
+      <div class="pname"><span data-es>1 mes</span><span data-en>1 month</span></div>
+      <div class="pmonth">$5<small>/<span data-es>mes</span><span data-en>mo</span></small></div>
+      <div class="ptotal"><span data-es>$5 en total</span><span data-en>$5 total</span></div>
+      <a class="btn ghost pbtn buy" data-plan="1mes" href="#" target="_blank" rel="noopener" style="width:100%;justify-content:center"><span data-es>Comprar</span><span data-en>Buy</span></a>
+    </div>
+    <div class="plan pop">
+      <div class="pop-tag"><span data-es>Popular</span><span data-en>Popular</span></div>
+      <div class="pname"><span data-es>3 meses</span><span data-en>3 months</span></div>
+      <div class="pmonth">$4<small>/<span data-es>mes</span><span data-en>mo</span></small></div>
+      <div class="ptotal"><span data-es>$12 en total</span><span data-en>$12 total</span></div>
+      <div class="psave"><span data-es>Ahorra 20%</span><span data-en>Save 20%</span></div>
+      <a class="btn pbtn buy" data-plan="3meses" href="#" target="_blank" rel="noopener" style="width:100%;justify-content:center"><span data-es>Comprar</span><span data-en>Buy</span></a>
+    </div>
+    <div class="plan">
+      <div class="pname"><span data-es>6 meses</span><span data-en>6 months</span></div>
+      <div class="pmonth">$3.50<small>/<span data-es>mes</span><span data-en>mo</span></small></div>
+      <div class="ptotal"><span data-es>$21 en total</span><span data-en>$21 total</span></div>
+      <div class="psave"><span data-es>Ahorra 30%</span><span data-en>Save 30%</span></div>
+      <a class="btn ghost pbtn buy" data-plan="6meses" href="#" target="_blank" rel="noopener" style="width:100%;justify-content:center"><span data-es>Comprar</span><span data-en>Buy</span></a>
+    </div>
+  </div>
+  <div class="incluye">
+    <span data-es>Todos los planes incluyen:</span><span data-en>All plans include:</span>
+    <b><span data-es>Mercado Libre + Amazon · Telegram y WhatsApp · panel en 2 idiomas · actualizaciones automáticas · guía paso a paso.</span><span data-en>Mercado Libre + Amazon · Telegram & WhatsApp · panel in 2 languages · auto-updates · step-by-step guide.</span></b>
   </div>
 </div></section>
 
@@ -138,9 +160,15 @@
 </div></footer>
 
 <script>
-  // Enlace de compra (configura aquí tu producto de Gumroad/Stripe/Lemon Squeezy)
-  var LINK_COMPRA = "https://gumroad.com/l/TU-PRODUCTO";
-  document.getElementById('buy').href = LINK_COMPRA;
+  // Enlaces de compra por plan (configura aquí tus productos de Gumroad/Stripe)
+  var LINKS = {
+    "1mes":   "https://gumroad.com/l/TU-PRODUCTO-1MES",
+    "3meses": "https://gumroad.com/l/TU-PRODUCTO-3MESES",
+    "6meses": "https://gumroad.com/l/TU-PRODUCTO-6MESES"
+  };
+  document.querySelectorAll('.buy').forEach(function(a){
+    a.href = LINKS[a.getAttribute('data-plan')] || '#';
+  });
   document.getElementById('year').textContent = new Date().getFullYear();
   function setLang(l){document.body.classList.toggle('en',l==='en');document.documentElement.lang=l;
     document.getElementById('l-es').classList.toggle('on',l==='es');document.getElementById('l-en').classList.toggle('on',l==='en');
